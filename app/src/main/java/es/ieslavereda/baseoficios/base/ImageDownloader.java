@@ -13,6 +13,8 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+
 public class ImageDownloader {
 
     private static RequestQueue colaPeticiones ;
@@ -25,6 +27,14 @@ public class ImageDownloader {
         Picasso.get().load(url).error(errorDrawable).into(imageView);
     }
 
+    public static Bitmap getImage(String url){
+        try {
+            return Picasso.get().load(url).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public static void downloadImage(Context context, String url, ImageView imageView, int defaultDrawable){
         ImageRequest peticion = new ImageRequest(

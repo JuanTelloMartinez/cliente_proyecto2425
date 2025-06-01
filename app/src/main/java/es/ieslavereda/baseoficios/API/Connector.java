@@ -1,6 +1,8 @@
 package es.ieslavereda.baseoficios.API;
 
 
+import android.util.Log;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +29,7 @@ public class Connector {
     public <T> List<T> getAsList(Class<T> clazz, String path) throws Exception {
         String url = Parameters.URL_API_BASE + path;
         String jsonResponse = callMethodsObject.get(url);
+        Log.i("JSON", jsonResponse);
         if (jsonResponse != null)
             return conversor.fromJsonList(jsonResponse, clazz);
         return null;

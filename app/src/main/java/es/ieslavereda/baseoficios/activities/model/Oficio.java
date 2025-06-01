@@ -1,5 +1,11 @@
 package es.ieslavereda.baseoficios.activities.model;
 
+import static es.ieslavereda.baseoficios.base.Parameters.URL_IMAGE_BASE;
+
+import android.graphics.Bitmap;
+
+import es.ieslavereda.baseoficios.base.ImageDownloader;
+
 public class Oficio {
     private int idOficio;
     private String descripcion;
