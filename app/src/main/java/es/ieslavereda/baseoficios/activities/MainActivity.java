@@ -4,6 +4,7 @@ import static es.ieslavereda.baseoficios.base.Parameters.URL_IMAGE_BASE;
 import static es.ieslavereda.baseoficios.base.Parameters.URL_IMG_OFICIO;
 
 import android.os.Bundle;
+import android.util.Log;
 // import android.content.Context;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +20,7 @@ import java.util.List;
 import es.ieslavereda.baseoficios.API.CallMethods;
 import es.ieslavereda.baseoficios.API.Connector;
 import es.ieslavereda.baseoficios.R;
+import es.ieslavereda.baseoficios.activities.model.Oficio;
 import es.ieslavereda.baseoficios.activities.model.Usuario;
 import es.ieslavereda.baseoficios.base.BaseActivity;
 import es.ieslavereda.baseoficios.base.CallInterface;
@@ -51,16 +53,15 @@ public class MainActivity extends BaseActivity implements CallInterface<List<Usu
 
         // Ejecutamos una llamada para obtener datos de la API
         executeCall(this);
+        Log.w("Después execute call", "Después execute call: ");
     }
 
     // Realizamos la llamada en segundo plano y devolvemos el objeto obtenido
     @Override
     public List<Usuario> doInBackground() throws Exception {
+        Log.w("doInBackground", "doinbackground: ");
         List<Usuario> usuariosObtenidos = Connector.getConector().getAsList(Usuario.class, "usuarios/");
-        for (Usuario usuario : usuariosObtenidos) {
-            usuario.setImage(ImageDownloader.getImage(URL_IMAGE_BASE +
-                    CallMethods.getCallMethodsObject().get(URL_IMG_OFICIO + usuario.getOficio_idOficio())));
-        }
+        Log.w("finalDoInBackground", "finalDoInBackground: ");
         return usuariosObtenidos;
     }
 
@@ -68,9 +69,14 @@ public class MainActivity extends BaseActivity implements CallInterface<List<Usu
     // Recibimos por parametro lo obtenido en segundo plano.
     @Override
     public void doInUI(List<Usuario> usuariosObtenidos) {
+        Log.w("doInUI", "doinui: " + usuariosObtenidos.isEmpty() + " " + usuariosObtenidos.size());
         if (usuariosObtenidos != null && !usuariosObtenidos.isEmpty()) {
             usuarios.clear();
             usuarios.addAll(usuariosObtenidos);
+            for (Usuario usuario : usuarios) {
+                usuario.setImage();
+            }
+            Log.w("notifyDataSetChanged", "usuarios: " + usuarios.toString());
             usuarioAdapter.notifyDataSetChanged();
         }
     }

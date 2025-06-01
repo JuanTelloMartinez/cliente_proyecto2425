@@ -47,16 +47,24 @@ public final class Oficio {
     }
 
     public static Oficio getOficio(int idOficioBuscado) {
+        if (!isLoaded) {
+            try {
+                cargarOficiosDesdeDataSource();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return LISTA_OFICIOS.get(idOficioBuscado);
     }
 
     public static void cargarOficiosDesdeDataSource() throws Exception {
         LISTA_OFICIOS.clear();
 
-        List<Oficio> oficiosCargados = Connector.getConector().getAsList(Oficio.class, "/oficios/");
+        List<Oficio> oficiosCargados = Connector.getConector().getAsList(Oficio.class, "oficios/");
         for (Oficio oficio : oficiosCargados) {
             registrarOficioInterno(oficio.getIdOficio(), oficio.getDescripcion(), oficio.getImage());
         }
+        isLoaded = true;
 
     }
     private static void registrarOficioInterno(int id, String descripcion, String nombreImagen) {

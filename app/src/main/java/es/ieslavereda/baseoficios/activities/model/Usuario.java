@@ -9,15 +9,15 @@ public class Usuario {
     private int idUsuario;
     private String nombre;
     private String apellidos;
-    private Oficio oficio;
+    private int oficio_idOficio;
     private Bitmap image;
 
     public Usuario(int idUsuario, String nombre, String apellidos, int oficio_idOficio) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.oficio = Oficio.getOficio(oficio_idOficio);
-        this.image = oficio.getImageBitmap();
+        this.oficio_idOficio = oficio_idOficio;
+        this.image = null;
     }
 
     public int getIdUsuario() {
@@ -33,14 +33,25 @@ public class Usuario {
     }
 
     public int getOficio_idOficio() {
-        return oficio.getIdOficio();
+        return oficio_idOficio;
     }
 
     public Bitmap getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setImage() {
+        this.image = Oficio.getOficio(oficio_idOficio).getImageBitmap();
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", oficio_idOficio=" + oficio_idOficio +
+                ", image=" + image +
+                '}';
     }
 }
