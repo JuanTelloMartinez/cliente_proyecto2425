@@ -1,7 +1,5 @@
 package es.ieslavereda.baseoficios.base;
 
-import static es.ieslavereda.baseoficios.base.Parameters.URL_IMAGE_BASE;
-import static es.ieslavereda.baseoficios.base.Parameters.URL_IMG_OFICIO;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,16 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
-import java.util.Map;
 
-import es.ieslavereda.baseoficios.API.CallMethods;
 import es.ieslavereda.baseoficios.R;
 import es.ieslavereda.baseoficios.activities.model.Usuario;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder> {
 
     private List<Usuario> listaUsuarios;
-    private Map<Usuario, ImageView> imgsPerfil;
     private Context context;
     private LayoutInflater inflater;
 

@@ -19,7 +19,6 @@ import java.util.List;
 import es.ieslavereda.baseoficios.API.CallMethods;
 import es.ieslavereda.baseoficios.API.Connector;
 import es.ieslavereda.baseoficios.R;
-import es.ieslavereda.baseoficios.activities.model.Oficio;
 import es.ieslavereda.baseoficios.activities.model.Usuario;
 import es.ieslavereda.baseoficios.base.BaseActivity;
 import es.ieslavereda.baseoficios.base.CallInterface;
