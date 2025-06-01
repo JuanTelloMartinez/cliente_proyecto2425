@@ -1,8 +1,5 @@
 package es.ieslavereda.baseoficios.activities;
 
-import static es.ieslavereda.baseoficios.base.Parameters.URL_IMAGE_BASE;
-import static es.ieslavereda.baseoficios.base.Parameters.URL_IMG_OFICIO;
-
 import android.os.Bundle;
 import android.util.Log;
 // import android.content.Context;
@@ -17,14 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ieslavereda.baseoficios.API.CallMethods;
 import es.ieslavereda.baseoficios.API.Connector;
 import es.ieslavereda.baseoficios.R;
-import es.ieslavereda.baseoficios.activities.model.Oficio;
 import es.ieslavereda.baseoficios.activities.model.Usuario;
 import es.ieslavereda.baseoficios.base.BaseActivity;
 import es.ieslavereda.baseoficios.base.CallInterface;
-import es.ieslavereda.baseoficios.base.ImageDownloader;
 import es.ieslavereda.baseoficios.base.UsuarioAdapter;
 
 public class MainActivity extends BaseActivity implements CallInterface<List<Usuario>> {
@@ -73,9 +67,8 @@ public class MainActivity extends BaseActivity implements CallInterface<List<Usu
         if (usuariosObtenidos != null && !usuariosObtenidos.isEmpty()) {
             usuarios.clear();
             usuarios.addAll(usuariosObtenidos);
-            for (Usuario usuario : usuarios) {
-                usuario.setImage();
-            }
+            for (Usuario usuario : usuarios)
+                usuario.setParameters();
             Log.w("notifyDataSetChanged", "usuarios: " + usuarios.toString());
             usuarioAdapter.notifyDataSetChanged();
         }

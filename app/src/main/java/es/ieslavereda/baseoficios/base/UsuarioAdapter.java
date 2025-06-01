@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import es.ieslavereda.baseoficios.R;
+import es.ieslavereda.baseoficios.activities.model.Oficio;
 import es.ieslavereda.baseoficios.activities.model.Usuario;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder> {
@@ -40,7 +41,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
         Usuario UsuarioActual = listaUsuarios.get(position);
 
         holder.textViewNombre.setText(UsuarioActual.getNombre());
-        holder.textViewOficio.setText(String.valueOf(UsuarioActual.getOficio_idOficio()));
+        holder.textViewOficio.setText(String.valueOf(Oficio.getOficio(UsuarioActual.getOficio_idOficio()).getDescripcion()));
         holder.imageViewPerfil.setImageBitmap(UsuarioActual.getImage());
     }
 

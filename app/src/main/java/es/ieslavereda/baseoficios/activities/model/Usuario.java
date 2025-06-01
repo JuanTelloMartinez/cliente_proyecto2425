@@ -1,8 +1,5 @@
 package es.ieslavereda.baseoficios.activities.model;
 
-import static es.ieslavereda.baseoficios.base.Parameters.URL_IMAGE_BASE;
-import static es.ieslavereda.baseoficios.base.Parameters.URL_IMG_OFICIO;
-
 import android.graphics.Bitmap;
 
 public class Usuario {
@@ -10,6 +7,7 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private int oficio_idOficio;
+    private String oficioDesc;
     private Bitmap image;
 
     public Usuario(int idUsuario, String nombre, String apellidos, int oficio_idOficio) {
@@ -40,7 +38,8 @@ public class Usuario {
         return image;
     }
 
-    public void setImage() {
+    public void setParameters() {
+        this.oficioDesc = Oficio.getOficio(oficio_idOficio).getDescripcion();
         this.image = Oficio.getOficio(oficio_idOficio).getImageBitmap();
     }
 
